@@ -141,7 +141,6 @@
 		127A982C2069607E00E45538 /* Corrected_Cargame */ = {
 			isa = PBXGroup;
 			children = (
-				127A982D2069607E00E45538 /* AppDelegate.swift */,
 				127A982F2069607E00E45538 /* ViewController.swift */,
 				127A985F206963D500E45538 /* road1.png */,
 				127A985B2069615700E45538 /* car0.png */,
@@ -157,6 +156,7 @@
 				127A9868206963D500E45538 /* road10.png */,
 				127A9869206963D500E45538 /* road11.png */,
 				127A986A206963D500E45538 /* road12.png */,
+				127A982D2069607E00E45538 /* AppDelegate.swift */,
 				127A986B206963D500E45538 /* road13.png */,
 				127A986C206963D500E45538 /* road14.png */,
 				127A986D206963D500E45538 /* road15.png */,

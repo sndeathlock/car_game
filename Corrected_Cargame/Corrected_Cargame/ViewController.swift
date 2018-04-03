@@ -39,14 +39,38 @@ class ViewController: UIViewController {
         
         road.image = UIImage.animatedImage(with: imageArray, duration: 1.0);
         
+        var carView: [UIImageView]!
+        
+        // carview = [UIImage(named : "car1.png")!,
+        //UIImage(named :"car2.png")!]
+        
+        for index in 1...15 {
+            let when = DispatchTime.now()
+            
+            DispatchQueue.main.asyncAfter(deadline:when)  {
+                let carPic = arc4random_uniform(7)
+                let carView=UIImageView(image :nil)
+                
+                switch carPic{
+                case 1:carView.image=UIImage(named: "car4.png")
+                case 2:carView.image=UIImage(named: "car5.png")
+                    
+                    
+                default:carView.image=UIImage(named:"car1.png")
+                }
+                
+
+                carView.frame=CGRect(x: 0, y:0,width : 50, height: 50)
+                
+            }
         
     }
     
-    override func didReceiveMemoryWarning() {
+        override func didReceiveMemoryWarning()    {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    }
     
 }
 
