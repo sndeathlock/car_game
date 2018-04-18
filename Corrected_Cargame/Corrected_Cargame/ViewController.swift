@@ -8,13 +8,24 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController{
+    
+        
+    var CarAnimator: UIDynamicAnimator!
+    var dynamicObjectBehavior : UIDynamicItemBehavior!
+    var gravityBehavior: UIGravityBehavior!
+    var collisionBehaviour: UICollisionBehavior!
+    
     
     @IBOutlet weak var road: UIImageView!
+    
+    let carsList = [1,2,3,4,5,6]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         var imageArray: [UIImage]!
+        
         
         imageArray = [UIImage(named: "road1.png")!,
                       UIImage(named: "road2.png")!,
@@ -36,41 +47,60 @@ class ViewController: UIViewController {
                       UIImage(named: "road18.png")!,
                       UIImage(named: "road19.png")!,
                       UIImage(named: "road20.png")!]
-        
-        road.image = UIImage.animatedImage(with: imageArray, duration: 1.0);
-        
-        var carView: [UIImageView]!
-        
-        // carview = [UIImage(named : "car1.png")!,
-        //UIImage(named :"car2.png")!]
-        
-        for index in 1...15 {
-            let when = DispatchTime.now()
-            
-            DispatchQueue.main.asyncAfter(deadline:when)  {
-                let carPic = arc4random_uniform(7)
-                let carView=UIImageView(image :nil)
-                
-                switch carPic{
-                case 1:carView.image=UIImage(named: "car4.png")
-                case 2:carView.image=UIImage(named: "car5.png")
-                    
-                    
-                default:carView.image=UIImage(named:"car1.png")
-                }
-                
 
-                carView.frame=CGRect(x: 0, y:0,width : 50, height: 50)
-                
-            }
+    
         
-    }
+        road.image = UIImage.animatedImage(with: imageArray, duration: 0.45);
+        
+        // cars coming
+        
+        CarAnimator = UIDynamicAnimator(referenceView: self.view)
+        dynamicObjectBehavior = UIDynamicItemBehavior(items: [])
+        collisionBehaviour = UICollisionBehavior(items:[])
+        
+        
+        
+   for index in 0...6{
+
+            let carsDelay = Double(self.carsList[index])
+            let When = DispatchTime.now() + carsDelay
+
+            DispatchQueue.main.asyncAfter(deadline: When) {
+
+            let coming = arc4random_uniform(6)
+            
+            let EnemyCar = UIImageView (image: nil)
+                
+            let displayWidth = UIScreen.main.bounds.width
+
+            switch coming {
+            
+            case 1: EnemyCar.image = UIImage(named: "car1.png")
+            case 2: EnemyCar.image = UIImage(named: "car2.png")
+            case 3: EnemyCar.image = UIImage(named: "car3.png")
+            case 4: EnemyCar.image = UIImage(named: "car4.png")
+            case 5: EnemyCar.image = UIImage(named: "car5.png")
+            case 6: EnemyCar.image = UIImage(named: "car6.png")
+            default:EnemyCar.image = UIImage(named: "car1.png")
+            
+                }
+
+          EnemyCar.frame = CGRect(x:Int(arc4random_uniform(UInt32(displayWidth))),y: 0, width: 40 ,height:80)
+            
+            self.view.addSubview(EnemyCar)
+            self.view.bringSubview(toFront: EnemyCar)
+                
+            // collision
+
+
+
+
+
+
+
+
     
-        override func didReceiveMemoryWarning()    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    }
-    
-}
+
+
+
 
